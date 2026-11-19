@@ -12,6 +12,10 @@ contextBridge.exposeInMainWorld(
       ipcRenderer.invoke("backend:get-url"),
 
     // Auto-update API
+
+    getAppVersion: () =>
+     ipcRenderer.invoke("app:get-version"),
+
     getUpdaterStatus: () =>
       ipcRenderer.invoke("updater:get-status"),
 

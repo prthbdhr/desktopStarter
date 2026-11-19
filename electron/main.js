@@ -73,6 +73,8 @@ ipcMain.handle("backend:get-url", () => {
   return backendHandle.url;
 });
 
+ipcMain.handle("app:get-version", () => app.getVersion());
+
 ipcMain.handle("updater:get-status", () => {
   return updaterStatus;
 });

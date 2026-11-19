@@ -75,7 +75,14 @@
       "category": "public.app-category.developer-tools",
       "identity": null,
       "hardenedRuntime": false,
-      "notarize": false
+      "notarize": false,
+      "publish": [
+        {
+          "provider": "github",
+          "owner": "prthbdhr",
+          "repo": "desktopStarter"
+        }
+      ]
     }
   }
 }
