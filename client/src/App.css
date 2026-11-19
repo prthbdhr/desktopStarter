@@ -1,0 +1,70 @@
+.app {
+  width: min(720px, 100%);
+  margin: auto;
+  padding: 64px 32px;
+  box-sizing: border-box;
+}
+
+.eyebrow {
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.app h1 {
+  margin: 8px 0 40px;
+}
+
+.backend-card {
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--social-bg);
+}
+
+.backend-card h2 {
+  margin-bottom: 12px;
+}
+
+.success-message {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.error-message {
+  color: #b42318;
+}
+
+.runtime-details {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  margin-top: 32px;
+}
+
+.runtime-details div {
+  display: grid;
+  gap: 4px;
+}
+
+.runtime-details dt {
+  font-size: 14px;
+}
+
+.runtime-details dd {
+  margin: 0;
+  color: var(--text-h);
+  font-weight: 600;
+}
+
+@media (max-width: 560px) {
+  .app {
+    padding: 40px 20px;
+  }
+
+  .runtime-details {
+    gap: 24px;
+  }
+}

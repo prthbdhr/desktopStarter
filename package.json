@@ -1,0 +1,81 @@
+{
+  "name": "desktopstarter",
+  "version": "1.0.0",
+  "description": "React Node Electron Desktop Application",
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "concurrently --kill-others --names backend,frontend,electron \"npm run dev:server\" \"npm run dev:client\" \"npm run dev:electron\"",
+    "dev:server": "npm --prefix server run dev",
+    "dev:client": "npm --prefix client run dev",
+    "dev:electron": "wait-on tcp:127.0.0.1:${PORT:-5000} tcp:127.0.0.1:${VITE_PORT:-5173} && electron .",
+    "electron": "NODE_ENV=development ELECTRON_RENDERER_MODE=development electron .",
+    "build:client": "npm --prefix client run build",
+    "pack:dir": "npm run build:client && electron-builder --dir",
+    "pack:win:nsis": "npm run build:client && electron-builder --win nsis --x64",
+    "pack:mac": "npm run build:client && electron-builder --mac dmg zip --arm64"
+  },
+  "type": "module",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "electron-updater": "^6.8.11",
+    "express": "^5.3.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "electron": "^45.3.3",
+    "electron-builder": "^26.18.0",
+    "wait-on": "^8.0.4"
+  },
+  "build": {
+    "appId": "com.desktopstarter.app",
+    "productName": "DesktopStarter",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "electron/**/*",
+      "server/**/*",
+      "client/dist/**/*",
+      "package.json"
+    ],
+    "asar": true,
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "allowElevation": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "DesktopStarter"
+    },
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "arm64"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "arm64"
+          ]
+        }
+      ],
+      "category": "public.app-category.developer-tools",
+      "identity": null,
+      "hardenedRuntime": false,
+      "notarize": false
+    }
+  }
+}
